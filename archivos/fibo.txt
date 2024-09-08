@@ -1,0 +1,18 @@
+entero numerosucesiones = 10
+
+entero f0 = 0
+
+entero f1= 1
+
+entero contador = 0
+
+imprimir("Secuencia de Fibo")
+ 
+mientras (contador <numerosucesiones){
+ 
+ imprimir(f0)
+  entero nth = f0 + f1
+  entero f0 = f1
+  entero f1 = nth
+  entero contador = contador + 1
+ }

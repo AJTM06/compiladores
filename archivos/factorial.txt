@@ -1,0 +1,13 @@
+funcion factorial(n){
+
+	entero resultado = 1
+
+	mientras(n > 1){
+
+	entero resultado = n * resultado
+
+entero n = n-1
+   
+}
+retornar resultado
+ }

@@ -1,0 +1,883 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOLEAN
+    CADENA
+    COMA
+    COMILLADOBLE
+    COMILLASIMPLE
+    CORFIN
+    CORIN
+    DECIMAL
+    DOSPUNTOS
+    ENTERO
+    FALSO
+    FUNCION
+    IMPRIMIR
+    OP_DIV
+    OP_MULTI
+    PARA
+    PUNTO
+    RETORNAR
+    VERDADERO
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_instrucciones
+Rule 2     lista_instrucciones -> lista_instrucciones instruccion
+Rule 3     lista_instrucciones -> instruccion
+Rule 4     instruccion -> VARIABLE OP_IGUAL expresion PUNTOCOMA
+Rule 5     expresion -> expresion OP_MAS termino
+Rule 6     expresion -> expresion OP_MENOS termino
+Rule 7     expresion -> termino
+Rule 8     termino -> NUMENTERO
+Rule 9     termino -> NUMDECIMAL
+Rule 10    termino -> VARIABLE
+Rule 11    termino -> PALABRA
+Rule 12    instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+Rule 13    instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+Rule 14    instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+Rule 15    condicion -> expresion SIGDOBLEIGUAL expresion
+Rule 16    condicion -> expresion DIFERENTE expresion
+Rule 17    condicion -> expresion SIGMENOR expresion
+Rule 18    condicion -> expresion SIGMAYOR expresion
+Rule 19    condicion -> expresion SIGMENORIGUAL expresion
+Rule 20    condicion -> expresion SIGMAYORIGUAL expresion
+Rule 21    condicion -> expresion O expresion
+Rule 22    condicion -> expresion Y expresion
+
+Terminals, with rules where they appear
+
+BOLEAN               : 
+CADENA               : 
+COMA                 : 
+COMILLADOBLE         : 
+COMILLASIMPLE        : 
+CORFIN               : 
+CORIN                : 
+DECIMAL              : 
+DIFERENTE            : 16
+DOSPUNTOS            : 
+ENTERO               : 
+FALSO                : 
+FUNCION              : 
+IMPRIMIR             : 
+LLAFIN               : 12 13 13 14
+LLAIN                : 12 13 13 14
+MIENTRAS             : 14
+NUMDECIMAL           : 9
+NUMENTERO            : 8
+O                    : 21
+OP_DIV               : 
+OP_IGUAL             : 4
+OP_MAS               : 5
+OP_MENOS             : 6
+OP_MULTI             : 
+PALABRA              : 11
+PARA                 : 
+PARFIN               : 12 13 14
+PARIN                : 12 13 14
+PUNTO                : 
+PUNTOCOMA            : 4
+RETORNAR             : 
+SI                   : 12 13
+SIGDOBLEIGUAL        : 15
+SIGMAYOR             : 18
+SIGMAYORIGUAL        : 20
+SIGMENOR             : 17
+SIGMENORIGUAL        : 19
+SINO                 : 13
+VARIABLE             : 4 10
+VERDADERO            : 
+Y                    : 22
+error                : 
+
+Nonterminals, with rules where they appear
+
+condicion            : 12 13 14
+expresion            : 4 5 6 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22
+instruccion          : 2 3
+lista_instrucciones  : 1 2 12 13 13 14
+programa             : 0
+termino              : 5 6 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_instrucciones
+    (2) lista_instrucciones -> . lista_instrucciones instruccion
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    programa                       shift and go to state 1
+    lista_instrucciones            shift and go to state 2
+    instruccion                    shift and go to state 3
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_instrucciones .
+    (2) lista_instrucciones -> lista_instrucciones . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    $end            reduce using rule 1 (programa -> lista_instrucciones .)
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    instruccion                    shift and go to state 7
+
+state 3
+
+    (3) lista_instrucciones -> instruccion .
+
+    VARIABLE        reduce using rule 3 (lista_instrucciones -> instruccion .)
+    SI              reduce using rule 3 (lista_instrucciones -> instruccion .)
+    MIENTRAS        reduce using rule 3 (lista_instrucciones -> instruccion .)
+    $end            reduce using rule 3 (lista_instrucciones -> instruccion .)
+    LLAFIN          reduce using rule 3 (lista_instrucciones -> instruccion .)
+
+
+state 4
+
+    (4) instruccion -> VARIABLE . OP_IGUAL expresion PUNTOCOMA
+
+    OP_IGUAL        shift and go to state 8
+
+
+state 5
+
+    (12) instruccion -> SI . PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> SI . PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+
+    PARIN           shift and go to state 9
+
+
+state 6
+
+    (14) instruccion -> MIENTRAS . PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    PARIN           shift and go to state 10
+
+
+state 7
+
+    (2) lista_instrucciones -> lista_instrucciones instruccion .
+
+    VARIABLE        reduce using rule 2 (lista_instrucciones -> lista_instrucciones instruccion .)
+    SI              reduce using rule 2 (lista_instrucciones -> lista_instrucciones instruccion .)
+    MIENTRAS        reduce using rule 2 (lista_instrucciones -> lista_instrucciones instruccion .)
+    $end            reduce using rule 2 (lista_instrucciones -> lista_instrucciones instruccion .)
+    LLAFIN          reduce using rule 2 (lista_instrucciones -> lista_instrucciones instruccion .)
+
+
+state 8
+
+    (4) instruccion -> VARIABLE OP_IGUAL . expresion PUNTOCOMA
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 12
+    termino                        shift and go to state 13
+
+state 9
+
+    (12) instruccion -> SI PARIN . condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> SI PARIN . condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (15) condicion -> . expresion SIGDOBLEIGUAL expresion
+    (16) condicion -> . expresion DIFERENTE expresion
+    (17) condicion -> . expresion SIGMENOR expresion
+    (18) condicion -> . expresion SIGMAYOR expresion
+    (19) condicion -> . expresion SIGMENORIGUAL expresion
+    (20) condicion -> . expresion SIGMAYORIGUAL expresion
+    (21) condicion -> . expresion O expresion
+    (22) condicion -> . expresion Y expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    condicion                      shift and go to state 17
+    expresion                      shift and go to state 18
+    termino                        shift and go to state 13
+
+state 10
+
+    (14) instruccion -> MIENTRAS PARIN . condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (15) condicion -> . expresion SIGDOBLEIGUAL expresion
+    (16) condicion -> . expresion DIFERENTE expresion
+    (17) condicion -> . expresion SIGMENOR expresion
+    (18) condicion -> . expresion SIGMAYOR expresion
+    (19) condicion -> . expresion SIGMENORIGUAL expresion
+    (20) condicion -> . expresion SIGMAYORIGUAL expresion
+    (21) condicion -> . expresion O expresion
+    (22) condicion -> . expresion Y expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    condicion                      shift and go to state 19
+    expresion                      shift and go to state 18
+    termino                        shift and go to state 13
+
+state 11
+
+    (10) termino -> VARIABLE .
+
+    PUNTOCOMA       reduce using rule 10 (termino -> VARIABLE .)
+    OP_MAS          reduce using rule 10 (termino -> VARIABLE .)
+    OP_MENOS        reduce using rule 10 (termino -> VARIABLE .)
+    SIGDOBLEIGUAL   reduce using rule 10 (termino -> VARIABLE .)
+    DIFERENTE       reduce using rule 10 (termino -> VARIABLE .)
+    SIGMENOR        reduce using rule 10 (termino -> VARIABLE .)
+    SIGMAYOR        reduce using rule 10 (termino -> VARIABLE .)
+    SIGMENORIGUAL   reduce using rule 10 (termino -> VARIABLE .)
+    SIGMAYORIGUAL   reduce using rule 10 (termino -> VARIABLE .)
+    O               reduce using rule 10 (termino -> VARIABLE .)
+    Y               reduce using rule 10 (termino -> VARIABLE .)
+    PARFIN          reduce using rule 10 (termino -> VARIABLE .)
+
+
+state 12
+
+    (4) instruccion -> VARIABLE OP_IGUAL expresion . PUNTOCOMA
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PUNTOCOMA       shift and go to state 20
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 13
+
+    (7) expresion -> termino .
+
+    PUNTOCOMA       reduce using rule 7 (expresion -> termino .)
+    OP_MAS          reduce using rule 7 (expresion -> termino .)
+    OP_MENOS        reduce using rule 7 (expresion -> termino .)
+    SIGDOBLEIGUAL   reduce using rule 7 (expresion -> termino .)
+    DIFERENTE       reduce using rule 7 (expresion -> termino .)
+    SIGMENOR        reduce using rule 7 (expresion -> termino .)
+    SIGMAYOR        reduce using rule 7 (expresion -> termino .)
+    SIGMENORIGUAL   reduce using rule 7 (expresion -> termino .)
+    SIGMAYORIGUAL   reduce using rule 7 (expresion -> termino .)
+    O               reduce using rule 7 (expresion -> termino .)
+    Y               reduce using rule 7 (expresion -> termino .)
+    PARFIN          reduce using rule 7 (expresion -> termino .)
+
+
+state 14
+
+    (8) termino -> NUMENTERO .
+
+    PUNTOCOMA       reduce using rule 8 (termino -> NUMENTERO .)
+    OP_MAS          reduce using rule 8 (termino -> NUMENTERO .)
+    OP_MENOS        reduce using rule 8 (termino -> NUMENTERO .)
+    SIGDOBLEIGUAL   reduce using rule 8 (termino -> NUMENTERO .)
+    DIFERENTE       reduce using rule 8 (termino -> NUMENTERO .)
+    SIGMENOR        reduce using rule 8 (termino -> NUMENTERO .)
+    SIGMAYOR        reduce using rule 8 (termino -> NUMENTERO .)
+    SIGMENORIGUAL   reduce using rule 8 (termino -> NUMENTERO .)
+    SIGMAYORIGUAL   reduce using rule 8 (termino -> NUMENTERO .)
+    O               reduce using rule 8 (termino -> NUMENTERO .)
+    Y               reduce using rule 8 (termino -> NUMENTERO .)
+    PARFIN          reduce using rule 8 (termino -> NUMENTERO .)
+
+
+state 15
+
+    (9) termino -> NUMDECIMAL .
+
+    PUNTOCOMA       reduce using rule 9 (termino -> NUMDECIMAL .)
+    OP_MAS          reduce using rule 9 (termino -> NUMDECIMAL .)
+    OP_MENOS        reduce using rule 9 (termino -> NUMDECIMAL .)
+    SIGDOBLEIGUAL   reduce using rule 9 (termino -> NUMDECIMAL .)
+    DIFERENTE       reduce using rule 9 (termino -> NUMDECIMAL .)
+    SIGMENOR        reduce using rule 9 (termino -> NUMDECIMAL .)
+    SIGMAYOR        reduce using rule 9 (termino -> NUMDECIMAL .)
+    SIGMENORIGUAL   reduce using rule 9 (termino -> NUMDECIMAL .)
+    SIGMAYORIGUAL   reduce using rule 9 (termino -> NUMDECIMAL .)
+    O               reduce using rule 9 (termino -> NUMDECIMAL .)
+    Y               reduce using rule 9 (termino -> NUMDECIMAL .)
+    PARFIN          reduce using rule 9 (termino -> NUMDECIMAL .)
+
+
+state 16
+
+    (11) termino -> PALABRA .
+
+    PUNTOCOMA       reduce using rule 11 (termino -> PALABRA .)
+    OP_MAS          reduce using rule 11 (termino -> PALABRA .)
+    OP_MENOS        reduce using rule 11 (termino -> PALABRA .)
+    SIGDOBLEIGUAL   reduce using rule 11 (termino -> PALABRA .)
+    DIFERENTE       reduce using rule 11 (termino -> PALABRA .)
+    SIGMENOR        reduce using rule 11 (termino -> PALABRA .)
+    SIGMAYOR        reduce using rule 11 (termino -> PALABRA .)
+    SIGMENORIGUAL   reduce using rule 11 (termino -> PALABRA .)
+    SIGMAYORIGUAL   reduce using rule 11 (termino -> PALABRA .)
+    O               reduce using rule 11 (termino -> PALABRA .)
+    Y               reduce using rule 11 (termino -> PALABRA .)
+    PARFIN          reduce using rule 11 (termino -> PALABRA .)
+
+
+state 17
+
+    (12) instruccion -> SI PARIN condicion . PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> SI PARIN condicion . PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+
+    PARFIN          shift and go to state 23
+
+
+state 18
+
+    (15) condicion -> expresion . SIGDOBLEIGUAL expresion
+    (16) condicion -> expresion . DIFERENTE expresion
+    (17) condicion -> expresion . SIGMENOR expresion
+    (18) condicion -> expresion . SIGMAYOR expresion
+    (19) condicion -> expresion . SIGMENORIGUAL expresion
+    (20) condicion -> expresion . SIGMAYORIGUAL expresion
+    (21) condicion -> expresion . O expresion
+    (22) condicion -> expresion . Y expresion
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    SIGDOBLEIGUAL   shift and go to state 24
+    DIFERENTE       shift and go to state 25
+    SIGMENOR        shift and go to state 26
+    SIGMAYOR        shift and go to state 27
+    SIGMENORIGUAL   shift and go to state 28
+    SIGMAYORIGUAL   shift and go to state 29
+    O               shift and go to state 30
+    Y               shift and go to state 31
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 19
+
+    (14) instruccion -> MIENTRAS PARIN condicion . PARFIN LLAIN lista_instrucciones LLAFIN
+
+    PARFIN          shift and go to state 32
+
+
+state 20
+
+    (4) instruccion -> VARIABLE OP_IGUAL expresion PUNTOCOMA .
+
+    VARIABLE        reduce using rule 4 (instruccion -> VARIABLE OP_IGUAL expresion PUNTOCOMA .)
+    SI              reduce using rule 4 (instruccion -> VARIABLE OP_IGUAL expresion PUNTOCOMA .)
+    MIENTRAS        reduce using rule 4 (instruccion -> VARIABLE OP_IGUAL expresion PUNTOCOMA .)
+    $end            reduce using rule 4 (instruccion -> VARIABLE OP_IGUAL expresion PUNTOCOMA .)
+    LLAFIN          reduce using rule 4 (instruccion -> VARIABLE OP_IGUAL expresion PUNTOCOMA .)
+
+
+state 21
+
+    (5) expresion -> expresion OP_MAS . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    termino                        shift and go to state 33
+
+state 22
+
+    (6) expresion -> expresion OP_MENOS . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    termino                        shift and go to state 34
+
+state 23
+
+    (12) instruccion -> SI PARIN condicion PARFIN . LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> SI PARIN condicion PARFIN . LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+
+    LLAIN           shift and go to state 35
+
+
+state 24
+
+    (15) condicion -> expresion SIGDOBLEIGUAL . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 36
+    termino                        shift and go to state 13
+
+state 25
+
+    (16) condicion -> expresion DIFERENTE . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 37
+    termino                        shift and go to state 13
+
+state 26
+
+    (17) condicion -> expresion SIGMENOR . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 38
+    termino                        shift and go to state 13
+
+state 27
+
+    (18) condicion -> expresion SIGMAYOR . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 39
+    termino                        shift and go to state 13
+
+state 28
+
+    (19) condicion -> expresion SIGMENORIGUAL . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 40
+    termino                        shift and go to state 13
+
+state 29
+
+    (20) condicion -> expresion SIGMAYORIGUAL . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 41
+    termino                        shift and go to state 13
+
+state 30
+
+    (21) condicion -> expresion O . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 42
+    termino                        shift and go to state 13
+
+state 31
+
+    (22) condicion -> expresion Y . expresion
+    (5) expresion -> . expresion OP_MAS termino
+    (6) expresion -> . expresion OP_MENOS termino
+    (7) expresion -> . termino
+    (8) termino -> . NUMENTERO
+    (9) termino -> . NUMDECIMAL
+    (10) termino -> . VARIABLE
+    (11) termino -> . PALABRA
+
+    NUMENTERO       shift and go to state 14
+    NUMDECIMAL      shift and go to state 15
+    VARIABLE        shift and go to state 11
+    PALABRA         shift and go to state 16
+
+    expresion                      shift and go to state 43
+    termino                        shift and go to state 13
+
+state 32
+
+    (14) instruccion -> MIENTRAS PARIN condicion PARFIN . LLAIN lista_instrucciones LLAFIN
+
+    LLAIN           shift and go to state 44
+
+
+state 33
+
+    (5) expresion -> expresion OP_MAS termino .
+
+    PUNTOCOMA       reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    OP_MAS          reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    OP_MENOS        reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    SIGDOBLEIGUAL   reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    DIFERENTE       reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    SIGMENOR        reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    SIGMAYOR        reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    SIGMENORIGUAL   reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    SIGMAYORIGUAL   reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    O               reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    Y               reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+    PARFIN          reduce using rule 5 (expresion -> expresion OP_MAS termino .)
+
+
+state 34
+
+    (6) expresion -> expresion OP_MENOS termino .
+
+    PUNTOCOMA       reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    OP_MAS          reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    OP_MENOS        reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    SIGDOBLEIGUAL   reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    DIFERENTE       reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    SIGMENOR        reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    SIGMAYOR        reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    SIGMENORIGUAL   reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    SIGMAYORIGUAL   reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    O               reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    Y               reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+    PARFIN          reduce using rule 6 (expresion -> expresion OP_MENOS termino .)
+
+
+state 35
+
+    (12) instruccion -> SI PARIN condicion PARFIN LLAIN . lista_instrucciones LLAFIN
+    (13) instruccion -> SI PARIN condicion PARFIN LLAIN . lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (2) lista_instrucciones -> . lista_instrucciones instruccion
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    lista_instrucciones            shift and go to state 45
+    instruccion                    shift and go to state 3
+
+state 36
+
+    (15) condicion -> expresion SIGDOBLEIGUAL expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 15 (condicion -> expresion SIGDOBLEIGUAL expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 37
+
+    (16) condicion -> expresion DIFERENTE expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 16 (condicion -> expresion DIFERENTE expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 38
+
+    (17) condicion -> expresion SIGMENOR expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 17 (condicion -> expresion SIGMENOR expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 39
+
+    (18) condicion -> expresion SIGMAYOR expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 18 (condicion -> expresion SIGMAYOR expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 40
+
+    (19) condicion -> expresion SIGMENORIGUAL expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 19 (condicion -> expresion SIGMENORIGUAL expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 41
+
+    (20) condicion -> expresion SIGMAYORIGUAL expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 20 (condicion -> expresion SIGMAYORIGUAL expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 42
+
+    (21) condicion -> expresion O expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 21 (condicion -> expresion O expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 43
+
+    (22) condicion -> expresion Y expresion .
+    (5) expresion -> expresion . OP_MAS termino
+    (6) expresion -> expresion . OP_MENOS termino
+
+    PARFIN          reduce using rule 22 (condicion -> expresion Y expresion .)
+    OP_MAS          shift and go to state 21
+    OP_MENOS        shift and go to state 22
+
+
+state 44
+
+    (14) instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN . lista_instrucciones LLAFIN
+    (2) lista_instrucciones -> . lista_instrucciones instruccion
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    lista_instrucciones            shift and go to state 46
+    instruccion                    shift and go to state 3
+
+state 45
+
+    (12) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones . LLAFIN
+    (13) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones . LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (2) lista_instrucciones -> lista_instrucciones . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    LLAFIN          shift and go to state 47
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    instruccion                    shift and go to state 7
+
+state 46
+
+    (14) instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones . LLAFIN
+    (2) lista_instrucciones -> lista_instrucciones . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    LLAFIN          shift and go to state 48
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    instruccion                    shift and go to state 7
+
+state 47
+
+    (12) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .
+    (13) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN . SINO LLAIN lista_instrucciones LLAFIN
+
+    VARIABLE        reduce using rule 12 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    SI              reduce using rule 12 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    MIENTRAS        reduce using rule 12 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    $end            reduce using rule 12 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    LLAFIN          reduce using rule 12 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    SINO            shift and go to state 49
+
+
+state 48
+
+    (14) instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .
+
+    VARIABLE        reduce using rule 14 (instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    SI              reduce using rule 14 (instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    MIENTRAS        reduce using rule 14 (instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    $end            reduce using rule 14 (instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+    LLAFIN          reduce using rule 14 (instruccion -> MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN .)
+
+
+state 49
+
+    (13) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO . LLAIN lista_instrucciones LLAFIN
+
+    LLAIN           shift and go to state 50
+
+
+state 50
+
+    (13) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN . lista_instrucciones LLAFIN
+    (2) lista_instrucciones -> . lista_instrucciones instruccion
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    lista_instrucciones            shift and go to state 51
+    instruccion                    shift and go to state 3
+
+state 51
+
+    (13) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones . LLAFIN
+    (2) lista_instrucciones -> lista_instrucciones . instruccion
+    (4) instruccion -> . VARIABLE OP_IGUAL expresion PUNTOCOMA
+    (12) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+    (13) instruccion -> . SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN
+    (14) instruccion -> . MIENTRAS PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN
+
+    LLAFIN          shift and go to state 52
+    VARIABLE        shift and go to state 4
+    SI              shift and go to state 5
+    MIENTRAS        shift and go to state 6
+
+    instruccion                    shift and go to state 7
+
+state 52
+
+    (13) instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN .
+
+    VARIABLE        reduce using rule 13 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN .)
+    SI              reduce using rule 13 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN .)
+    MIENTRAS        reduce using rule 13 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN .)
+    $end            reduce using rule 13 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN .)
+    LLAFIN          reduce using rule 13 (instruccion -> SI PARIN condicion PARFIN LLAIN lista_instrucciones LLAFIN SINO LLAIN lista_instrucciones LLAFIN .)
+
